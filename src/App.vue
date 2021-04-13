@@ -8,12 +8,15 @@
       honesty may seriously impact my grade for this class.
     </p>
 
-    <WorldStatistics />
-    <TrendPerCountry />
+    <div class="containerrr">
+      <WorldStatistics />
+      <TrendPerCountry v-bind:country="conutry" />
+    </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 import WorldStatistics from "./components/WorldStatistics";
 import TrendPerCountry from "./components/TrendPerCountry";
 
@@ -23,6 +26,36 @@ export default {
     WorldStatistics,
     TrendPerCountry,
   },
+  data() {
+    return {
+      list: undefined,
+      conutry: null,
+    };
+  },
+
+  mounted() {
+    const getApiData = async () => {
+      try {
+        const options = {
+          method: "GET",
+          url: "https://coronavirus-map.p.rapidapi.com/v1/summary/latest",
+          headers: {
+            "x-rapidapi-key":
+              "82cfa42bcamshdeb58c7ca825d3fp1cea0fjsnc2643a07e4bf",
+            "x-rapidapi-host": "coronavirus-map.p.rapidapi.com",
+          },
+        };
+        const res = await axios.request(options);
+        this.list = res.data.data.regions;
+        this.conutry = res.data.data.regions;
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getApiData();
+  },
+  methods: {},
 };
 </script>
 
@@ -34,5 +67,8 @@ export default {
   /* text-align: center; */
   color: #2c3e50;
   margin-top: 60px;
+}
+.containerrr {
+  display: flex;
 }
 </style>
