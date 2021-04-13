@@ -122,13 +122,13 @@ export default {
           dates.push(key);
         }
         console.log(arr);
-        console.log(dates);
+        console.log("asdasd", dates);
         this.date = dates;
       } catch (error) {
         console.log(error);
       }
       const newData = (this.series[0].data = arr.reverse());
-      const year = (this.chartOptions.xaxis.categories = dates.reverse());
+      const year = (this.chartOptions.xaxis.categories = [...dates].reverse());
       this.chartOptions = {
         xaxis: {
           categories: year,
@@ -179,7 +179,7 @@ export default {
         console.log(error);
       }
       const newData = (this.series[0].data = arr.reverse());
-      const year = (this.chartOptions.xaxis.categories = dates.reverse());
+      const year = (this.chartOptions.xaxis.categories = [...dates].reverse());
       this.chartOptions = {
         xaxis: {
           categories: year,
@@ -223,7 +223,7 @@ export default {
         console.log(error);
       }
       const newData = (this.series[0].data = arr.reverse());
-      const year = (this.chartOptions.xaxis.categories = dates.reverse());
+      const year = (this.chartOptions.xaxis.categories = [...dates].reverse());
       this.chartOptions = {
         xaxis: {
           categories: year,
